@@ -4,6 +4,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Создать консольное Java-приложение «Горячо-Холодно»
+ * <p>
+ * Вначале программа «загадывает» случайное число от 1 до 100.
+ * Пользователь вводит с консоли число.
+ * Программа говорит пользователю «горячо», если он приблизился к «загаданному» числу и «холодно»,
+ * И позволяет ввести число еще раз. если введенное число дальше от загаданного, чем предыдущее.
+ * Для первого ввода пользователя считаем предыдущим введенным числом 0.
+ * Предусмотреть возможность выхода из игры до отгадывания числа.
+ */
 public class HotCold {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

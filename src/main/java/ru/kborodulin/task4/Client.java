@@ -2,6 +2,9 @@ package ru.kborodulin.task4;
 
 import java.time.LocalDate;
 
+/**
+ * Клиент
+ */
 public class Client {
     private String lastName;
     private String firstName;

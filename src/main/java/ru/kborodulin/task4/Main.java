@@ -30,8 +30,8 @@ public class Main {
     public static void main(String[] args) {
         // Создаем первого клиента и открываем вклад
         Client client1 = new Client("Иванов", "Иван", "Иванович", LocalDate.of(1990, 01, 01), "1234567891");
-        ClientDeposit clientDeposid1 = new ClientDeposit(client1, listDeposit.get(2), 5000);
-        System.out.println(clientDeposid1);
+        ClientDeposit clientDeposit1 = new ClientDeposit(client1, listDeposit.get(2), 5000);
+        System.out.println(clientDeposit1);
 
         // Создаем второго клиента и открываем вклад
         Client client2 = new Client("Иванов", "Иван", "Иванович", LocalDate.of(1990, 01, 01), "1234567891");
@@ -39,6 +39,6 @@ public class Main {
         System.out.println(clientDeposid2);
 
         // Закрываем вклад для первого клиента
-        clientDeposid1.clientDepositClose(clientDeposid1);
+        clientDeposit1.clientDepositClose(clientDeposit1);
     }
 }

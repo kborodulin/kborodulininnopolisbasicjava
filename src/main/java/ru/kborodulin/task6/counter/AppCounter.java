@@ -6,6 +6,11 @@ package ru.kborodulin.task6.counter;
  */
 public class AppCounter {
     public static void main(String[] args) {
+        new Counter();
+        new Counter();
 
+        for (int row = 0; row < 10; row++) {
+            new Counter();
+        }
     }
 }

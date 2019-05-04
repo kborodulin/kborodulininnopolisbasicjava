@@ -1,4 +1,4 @@
-package ru.kborodulin.task7.animal;
+package ru.kborodulin.task7.animal_task1;
 
 /**
  * 1. Написать абстрактный класс Animal с абстрактным методом getName.

@@ -1,4 +1,4 @@
-package ru.kborodulin.task7.animal_task1;
+package ru.kborodulin.task7.animaltask1;
 
 public class Cat extends Animal {
     @Override

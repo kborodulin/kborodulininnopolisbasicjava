@@ -1,67 +1,55 @@
-package ru.kborodulin.task5;
+package ru.kborodulin.task5.vm;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 
+/**
+ * Вендинг машина
+ */
+@Data
+@RequiredArgsConstructor
 public class VendingMachine {
+    @NonNull
     private List<Drink> listDrinks;
-    private Drink drink;
-    private double moneyUserDrink;
     private int numUserDrink;
 
-    public VendingMachine(List<Drink> listDrinks) {
-        this.listDrinks = listDrinks;
-    }
-
-    public List<Drink> getListDrinks() {
-        return listDrinks;
-    }
-
-    public void setListDrinks(List<Drink> listDrinks) {
-        this.listDrinks = listDrinks;
-    }
-
-    public Drink getDrink() {
-        return drink;
-    }
-
-    public void setDrink(Drink drink) {
-        this.drink = drink;
-    }
-
-    public double getMoneyUserDrink() {
-        return moneyUserDrink;
-    }
-
-    public void setMoneyUserDrink(double moneyUserDrink) {
-        this.moneyUserDrink = moneyUserDrink;
-    }
-
-    public int getNumUserDrink() {
-        return numUserDrink;
-    }
-
-    public void setNumUserDrink(int numUserDrink) {
-        this.numUserDrink = numUserDrink;
-    }
-
     public void showDrinks(List<Drink> listDrinks) {
-        for (Drink menu : getListDrinks()) {
-            System.out.println(String.format("%-3s", menu.getNumDrink()) + String.format("%-20s", menu.getNameDrink()) + menu.getMomeyDrink());
+        for (Drink drink : listDrinks) {
+            ++numUserDrink;
+            System.out.println(String.format("%-3s", numUserDrink) + String.format("%-20s", drink.getNamedrink()) + drink.getMomeyDrink());
         }
-        System.out.println("-------------------------------------");
     }
+
+    public int getNumListOperationReceiver() {
+        return MoneyReceiver.numListOperation();
+    }
+
+//
+//    public double addMoney() {
+//        MoneyReceiver moneyReceiver = new MoneyReceiver();
+//        double money = moneyReceiver.addReceiver();
+//        return money;
+//    }
+//
+
+
+
+    /*
+
+    //private Drink drink;
+    //private double moneyUserDrink;
 
     public double addMoney() throws Exception {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
         System.out.print("Внесите деньги: ");
         String strMoney = reader.readLine();
         if (strMoney.isEmpty())
             throw new Exception("Пользователь не внес деньги");
         moneyUserDrink = Double.parseDouble(strMoney);
         System.out.println("Внесено денег: " + moneyUserDrink);
-        System.out.println("-------------------------------------");
         return moneyUserDrink;
     }
 
@@ -101,5 +89,5 @@ public class VendingMachine {
 
     public void cashBack() {
         System.out.println("Сдача: " + (moneyUserDrink - drink.getMomeyDrink()));
-    }
+    }*/
 }

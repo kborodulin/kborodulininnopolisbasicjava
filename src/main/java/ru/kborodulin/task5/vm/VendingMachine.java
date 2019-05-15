@@ -24,7 +24,7 @@ public class VendingMachine {
     }
 
     public int getNumListOperationReceiver() {
-        return MoneyReceiver.numListOperation();
+        return  MoneyReceiver.numListOperation();
     }
 
 //

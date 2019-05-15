@@ -2,6 +2,8 @@ package ru.kborodulin.task5.vm;
 
 import java.util.Arrays;
 
+import static java.lang.System.exit;
+
 /**
  * Реализовать программу «Вендинговый автомат», которая позволит:
  * <p>
@@ -26,29 +28,33 @@ public class App {
         System.out.println("\n");
 
         System.out.println("----------Список операций--------");
-        System.out.println("1 - Внести деньги на счет");
-        System.out.println("2 - Довнести деньги на счет");
-        System.out.println("3 - Получить напиток по его номеру");
-        System.out.println("4 - Выдать сдачу");
-        System.out.println("5 - Завершить обслуживание");
+        for (String listOperation : MoneyReceiver.listOperation()) {
+            System.out.println(listOperation);
+        }
         System.out.println("\n");
 
         while (true) {
             System.out.print("Введите номер операции: ");
-            if (vm.getNumListOperationReceiver() == 5) {
-                System.out.println("Обслуживание завершено!!!");
-                break;
+            switch (vm.getNumListOperationReceiver()) {
+                case 1:
+                    for (String listOperation : MoneyReceiver.listOperation()) {
+                        System.out.println(listOperation);
+                    }
+                    break;
+
+                case 6:
+                    System.out.println("Обслуживание завершено");
+                    exit(0);
+                default:
+                    System.out.println("Выбран несуществуюший тип операции");
+                    break;
             }
         }
 
 
-
-
-        /*
-        System.out.print("Внесите деньги: ");
-        double money = vm.addMoney();
-        System.out.println("На счету денег: " + money);
-    */
+//        System.out.print("Внесите деньги: ");
+//        double money = vm.addMoney();
+//        System.out.println("На счету денег: " + money);
 
         // Выберем номер напитка
         // int keyDrink = vm.giveNumDrink();

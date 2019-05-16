@@ -3,6 +3,8 @@ package ru.kborodulin.task5.vm;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.kborodulin.task5.exception.NotEnoughMoney;
 import ru.kborodulin.task5.exception.NotSelectedDrinkListException;
 
@@ -20,6 +22,8 @@ public class VendingMachine {
     private int numUserDrink;
     private double moneyUserDrink;
     private Drink drink;
+
+    private static final Logger logger = LoggerFactory.getLogger(VendingMachine.class);
 
     public final List<String> listOperation() {
         List<String> listOperation = new ArrayList();
@@ -41,7 +45,9 @@ public class VendingMachine {
     }
 
     public int getNumOperation() {
-        return MoneyReceiver.inputNumOperation();
+        int numOperation = MoneyReceiver.inputNumOperation();
+        logger.info("Получен номер операции от клиента: {}", numOperation);
+        return numOperation;
     }
 
     public int getNumDrink() {
@@ -49,11 +55,13 @@ public class VendingMachine {
         if (numDrink > listDrinks.size() || numDrink <= 0) {
             throw new NotSelectedDrinkListException();
         }
+        logger.info("Получен номер напитка от клиента: {}", numDrink);
         return numDrink;
     }
 
     public double addMoney() {
         moneyUserDrink += MoneyReceiver.addMoney();
+        logger.info("Текущий остаток денег клиента: {}", moneyUserDrink);
         return moneyUserDrink;
     }
 
@@ -63,6 +71,8 @@ public class VendingMachine {
             throw new NotEnoughMoney();
         }
         moneyUserDrink -= drink.getMomeyDrink();
-        return drink.getNamedrink();
+        String nameDrink = drink.getNamedrink();
+        logger.info("Клиенту выдан напиток: {}", nameDrink);
+        return nameDrink;
     }
 }

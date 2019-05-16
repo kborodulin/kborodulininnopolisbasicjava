@@ -1,6 +1,8 @@
 package ru.kborodulin.task5.vm;
 
 import lombok.Data;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.kborodulin.task5.exception.InvalidDrinkNumberException;
 import ru.kborodulin.task5.exception.NotMoneyException;
 
@@ -9,6 +11,8 @@ import ru.kborodulin.task5.exception.NotMoneyException;
  */
 @Data
 public class MoneyReceiver {
+    private static final Logger logger = LoggerFactory.getLogger(MoneyReceiver.class);
+
     public static int inputNumOperation() {
         int numOperation = 0;
         try {
@@ -18,17 +22,18 @@ public class MoneyReceiver {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        logger.info("Введен номер операции: {}", numOperation);
         return numOperation;
     }
 
     public static int inputNumDrink() {
-        int numOperation = 0;
+        int numDrink = 0;
         try {
             String line = IOVendingMachine.readTerminal();
             if (line.isEmpty()) {
                 throw new InvalidDrinkNumberException();
             }
-            numOperation = Integer.parseInt(line);
+            numDrink = Integer.parseInt(line);
         } catch (InvalidDrinkNumberException e) {
             System.out.println(e.getMessage());
         } catch (NumberFormatException e) {
@@ -36,7 +41,8 @@ public class MoneyReceiver {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return numOperation;
+        logger.info("Введен номер напитка: {}", numDrink);
+        return numDrink;
     }
 
     public static double addMoney() {
@@ -54,6 +60,7 @@ public class MoneyReceiver {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        logger.info("Введен номер напитка: {}", money);
         return money;
     }
 }

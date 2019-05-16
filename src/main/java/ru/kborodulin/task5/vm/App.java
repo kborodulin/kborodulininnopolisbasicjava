@@ -1,5 +1,8 @@
 package ru.kborodulin.task5.vm;
 
+import ru.kborodulin.task5.exception.NotEnoughMoney;
+import ru.kborodulin.task5.exception.NotSelectedDrinkListException;
+
 import java.util.Arrays;
 
 import static java.lang.System.exit;
@@ -28,41 +31,54 @@ public class App {
         System.out.println("\n");
 
         System.out.println("----------Список операций--------");
-        for (String listOperation : MoneyReceiver.listOperation()) {
+        for (String listOperation : vm.listOperation()) {
             System.out.println(listOperation);
         }
         System.out.println("\n");
 
         while (true) {
             System.out.print("Введите номер операции: ");
-            switch (vm.getNumListOperationReceiver()) {
+            switch (vm.getNumOperation()) {
                 case 1:
-                    for (String listOperation : MoneyReceiver.listOperation()) {
+                    for (String listOperation : vm.listOperation()) {
                         System.out.println(listOperation);
                     }
                     break;
-
+                case 2:
+                case 3:
+                    System.out.print("Введите сумму: ");
+                    vm.addMoney();
+                    if (vm.getMoneyUserDrink() > 0)
+                        System.out.println("Количество денег на счету: " + vm.getMoneyUserDrink());
+                    break;
+                case 4:
+                    System.out.println("Остаток на счете: " + vm.getMoneyUserDrink());
+                    break;
+                case 5:
+                    System.out.print("Введите номер напитка: ");
+                    int numDrink = 0;
+                    String strDrink = "";
+                    try {
+                        numDrink = vm.getNumDrink();
+                        strDrink = vm.giveDrink(numDrink);
+                        System.out.println("Выдан: " + strDrink + ", остаток на счете: " + vm.getMoneyUserDrink());
+                    } catch (NotSelectedDrinkListException e) {
+                        System.out.println(e.getMessage());
+                    } catch (NotEnoughMoney e) {
+                        System.out.println(e.getMessage());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
                 case 6:
+                case 7:
+                    System.out.println("Вылана сдача: " + vm.getMoneyUserDrink());
                     System.out.println("Обслуживание завершено");
                     exit(0);
                 default:
-                    System.out.println("Выбран несуществуюший тип операции");
+                    System.out.println("Выбран несуществуюший тип операции!!!");
                     break;
             }
         }
-
-
-//        System.out.print("Внесите деньги: ");
-//        double money = vm.addMoney();
-//        System.out.println("На счету денег: " + money);
-
-        // Выберем номер напитка
-        // int keyDrink = vm.giveNumDrink();
-
-        // Выдадим напиток
-        //vm.giveDrink();
-
-        // Вернем сдачу
-        //  vm.cashBack();
     }
 }

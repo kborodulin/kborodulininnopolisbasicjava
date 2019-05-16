@@ -1,36 +1,38 @@
 package ru.kborodulin.task5.vm;
 
 import lombok.Data;
-
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import ru.kborodulin.task5.exception.InvalidDrinkNumberException;
+import ru.kborodulin.task5.exception.NotMoneyException;
 
 /**
  * Купюроприемник
  */
 @Data
 public class MoneyReceiver {
-    public static List<String> listOperation() {
-        List<String> listOperation = new ArrayList();
-        listOperation.add("1 - Повторно вывести список операций");
-        listOperation.add("2 - Внести деньги на счет");
-        listOperation.add("3 - Довнести деньги на счет");
-        listOperation.add("4 - Получить напиток по его номеру");
-        listOperation.add("5 - Выдать сдачу");
-        listOperation.add("6 - Завершить обслуживание");
-        return listOperation;
+    public static int inputNumOperation() {
+        int numOperation = 0;
+        try {
+            numOperation = Integer.parseInt(IOVendingMachine.readTerminal());
+        } catch (NumberFormatException e) {
+            System.out.println("Ввод номера операции, ошибка формата целого числа!!!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return numOperation;
     }
 
-    public static int numListOperation() {
+    public static int inputNumDrink() {
         int numOperation = 0;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
-            numOperation = Integer.parseInt(reader.readLine());
+            String line = IOVendingMachine.readTerminal();
+            if (line.isEmpty()) {
+                throw new InvalidDrinkNumberException();
+            }
+            numOperation = Integer.parseInt(line);
+        } catch (InvalidDrinkNumberException e) {
+            System.out.println(e.getMessage());
         } catch (NumberFormatException e) {
-            System.out.println("Введите номер операции в виде целого числа");
+            System.out.println("Ввод номера напитка, ошибка формата целого числа!!!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -39,11 +41,16 @@ public class MoneyReceiver {
 
     public static double addMoney() {
         double money = 0d;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
-            money = Double.parseDouble(reader.readLine());
+            String line = IOVendingMachine.readTerminal();
+            if (line.isEmpty()) {
+                throw new NotMoneyException();
+            }
+            money = Double.parseDouble(line);
+        } catch (NotMoneyException e) {
+            System.out.println(e.getMessage());
         } catch (NumberFormatException e) {
-            System.out.println("Введите сумму денег в виде дробного числа");
+            System.out.println("Добавление денег, ошибка формата целого/дробного числа!!!");
         } catch (Exception e) {
             e.printStackTrace();
         }

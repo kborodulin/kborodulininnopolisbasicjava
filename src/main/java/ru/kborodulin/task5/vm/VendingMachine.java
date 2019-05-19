@@ -3,8 +3,7 @@ package ru.kborodulin.task5.vm;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import ru.kborodulin.task5.exception.NotEnoughMoney;
 import ru.kborodulin.task5.exception.NotSelectedDrinkListException;
 
@@ -16,14 +15,13 @@ import java.util.List;
  */
 @Data
 @RequiredArgsConstructor
+@Slf4j
 public class VendingMachine {
     @NonNull
     private List<Drink> listDrinks;
     private int numUserDrink;
     private double moneyUserDrink;
     private Drink drink;
-
-    private static final Logger logger = LoggerFactory.getLogger(VendingMachine.class);
 
     public final List<String> listOperation() {
         List<String> listOperation = new ArrayList();
@@ -46,7 +44,7 @@ public class VendingMachine {
 
     public int getNumOperation() {
         int numOperation = MoneyReceiver.inputNumOperation();
-        logger.info("Получен номер операции от клиента: {}", numOperation);
+        log.info("Получен номер операции от клиента: {}", numOperation);
         return numOperation;
     }
 
@@ -55,13 +53,13 @@ public class VendingMachine {
         if (numDrink > listDrinks.size() || numDrink <= 0) {
             throw new NotSelectedDrinkListException();
         }
-        logger.info("Получен номер напитка от клиента: {}", numDrink);
+        log.info("Получен номер напитка от клиента: {}", numDrink);
         return numDrink;
     }
 
     public double addMoney() {
         moneyUserDrink += MoneyReceiver.addMoney();
-        logger.info("Текущий остаток денег клиента: {}", moneyUserDrink);
+        log.info("Текущий остаток денег клиента: {}", moneyUserDrink);
         return moneyUserDrink;
     }
 
@@ -72,7 +70,7 @@ public class VendingMachine {
         }
         moneyUserDrink -= drink.getMomeyDrink();
         String nameDrink = drink.getNamedrink();
-        logger.info("Клиенту выдан напиток: {}", nameDrink);
+        log.info("Клиенту выдан напиток: {}", nameDrink);
         return nameDrink;
     }
 }

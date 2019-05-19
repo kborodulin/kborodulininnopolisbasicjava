@@ -1,5 +1,6 @@
 package ru.kborodulin.task5.vm;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -7,7 +8,7 @@ import lombok.ToString;
 /**
  * Справочник напитков
  */
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @ToString
 public enum Drink {

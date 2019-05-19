@@ -1,30 +1,26 @@
 package ru.kborodulin.task5.vm;
 
-import lombok.Data;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import ru.kborodulin.task5.exception.InvalidDrinkNumberException;
 import ru.kborodulin.task5.exception.NotMoneyException;
 
 /**
  * Купюроприемник
  */
-@Data
+@Slf4j
 public class MoneyReceiver {
-    private static final Logger logger = LoggerFactory.getLogger(MoneyReceiver.class);
-
     public static int inputNumOperation() {
         int numOperation = 0;
         try {
             numOperation = Integer.parseInt(IOVendingMachine.readTerminal());
         } catch (NumberFormatException e) {
             System.out.println("Ввод номера операции, ошибка формата целого числа!!!");
-            logger.error("Ввод номера операции, ошибка формата целого числа!!!", e);
+            log.error("Ввод номера операции, ошибка формата целого числа!!!", e);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error("Ошибка ввода номера операции!!!", e);
+            log.error("Ошибка ввода номера операции!!!", e);
         }
-        logger.info("Введен номер операции: {}", numOperation);
+        log.info("Введен номер операции: {}", numOperation);
         return numOperation;
     }
 
@@ -38,15 +34,15 @@ public class MoneyReceiver {
             numDrink = Integer.parseInt(line);
         } catch (InvalidDrinkNumberException e) {
             System.out.println(e.getMessage());
-            logger.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         } catch (NumberFormatException e) {
             System.out.println("Ввод номера напитка, ошибка формата целого числа!!!");
-            logger.error("Ввод номера напитка, ошибка формата целого числа!!!", e);
+            log.error("Ввод номера напитка, ошибка формата целого числа!!!", e);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error("Ошибка ввода номера напитка!!!", e);
+            log.error("Ошибка ввода номера напитка!!!", e);
         }
-        logger.info("Введен номер напитка: {}", numDrink);
+        log.info("Введен номер напитка: {}", numDrink);
         return numDrink;
     }
 
@@ -60,15 +56,15 @@ public class MoneyReceiver {
             money = Double.parseDouble(line);
         } catch (NotMoneyException e) {
             System.out.println(e.getMessage());
-            logger.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         } catch (NumberFormatException e) {
             System.out.println("Добавление денег, ошибка формата целого/дробного числа!!!");
-            logger.error("Добавление денег, ошибка формата целого/дробного числа!!!", e);
+            log.error("Добавление денег, ошибка формата целого/дробного числа!!!", e);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error("Ошибка добавления денег!!!", e);
+            log.error("Ошибка добавления денег!!!", e);
         }
-        logger.info("Введен номер напитка: {}", money);
+        log.info("Введен номер напитка: {}", money);
         return money;
     }
 }

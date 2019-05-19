@@ -1,5 +1,6 @@
 package ru.kborodulin.task5.vm;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.kborodulin.task5.exception.NotEnoughMoney;
@@ -24,9 +25,8 @@ import static java.lang.System.exit;
  * <p>
  * Для хранения напитков предлагается использовать массив с enum (или с обычным классом). У напитка должна быть цена и название.
  */
+@Slf4j
 public class App {
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
-
     public static void main(String[] args) {
         VendingMachine vm = new VendingMachine(Arrays.asList(Drink.values()));
 
@@ -43,7 +43,7 @@ public class App {
         while (true) {
             System.out.print("Введите номер операции: ");
             int numOperation = vm.getNumOperation();
-            logger.info("Выбран номер операции: {}", numOperation);
+            log.info("Выбран номер операции: {}", numOperation);
             switch (numOperation) {
                 case 1:
                     for (String listOperation : vm.listOperation()) {
@@ -70,13 +70,13 @@ public class App {
                         System.out.println("Выдан: " + strDrink + ", остаток на счете: " + vm.getMoneyUserDrink());
                     } catch (NotSelectedDrinkListException e) {
                         System.out.println(e.getMessage());
-                        logger.error(e.getMessage(), e);
+                        log.error(e.getMessage(), e);
                     } catch (NotEnoughMoney e) {
                         System.out.println(e.getMessage());
-                        logger.error(e.getMessage(), e);
+                        log.error(e.getMessage(), e);
                     } catch (Exception e) {
                         e.printStackTrace();
-                        logger.error("Ошибка получения напитка!!!", e);
+                        log.error("Ошибка получения напитка!!!", e);
                     }
                     break;
                 case 6:

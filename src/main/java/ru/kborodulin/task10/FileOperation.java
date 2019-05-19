@@ -5,50 +5,57 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Работа с файлами
  */
 public class FileOperation {
-    /**
-     * Создать файл
-     */
     public static String newFile(String pathFile, String nameFile) throws IOException {
         String pathFileName = pathFile + File.separator + nameFile;
         Path path = Paths.get(pathFileName);
         Files.createFile(path);
-        return pathFileName;
+        return "Файл создан: " + pathFileName;
     }
 
-    /**
-     * Переименовать файл
-     */
     public static String renameFile(String pathFile, String oldNameFile, String newNameFile) throws IOException {
         String oldPathFileName = pathFile + File.separator + oldNameFile;
         String newPathFileName = pathFile + File.separator + newNameFile;
         Path oldPath = Paths.get(oldPathFileName);
         Path newPath = Paths.get(newPathFileName);
         Files.move(oldPath, newPath);
-        return newPathFileName;
+        return "Файл переименован: " + newPathFileName;
     }
 
-    /**
-     * Копировать файл
-     */
     public static String copyFile(String pathFileName, String destinion) throws IOException {
         Path path = Paths.get(pathFileName);
         Path pathDestinion = Paths.get(destinion);
         Files.copy(path, pathDestinion);
-        return destinion;
+        return "Файл скопирован: " + destinion;
     }
 
-    /**
-     * Удалить файл
-     */
     public static String deleteFile(String pathFile, String nameFile) throws IOException {
         String pathFileName = pathFile + File.separator + nameFile;
         Path path = Paths.get(pathFileName);
         Files.delete(path);
-        return pathFileName;
+        return "Файл удален: " + pathFileName;
+    }
+
+    public static String recursive(String pathDirectory) throws IOException {
+        File[] arrFiles = new File(pathDirectory).listFiles();
+        for (File file : arrFiles) {
+            if (file.isFile()) {
+                System.out.println( "   " + file.getAbsolutePath());
+               // System.out.println(file.getAbsolutePath());
+            }
+            if(file.isDirectory()){
+                recursive(file.getAbsolutePath());
+            }
+        }
+        //System.out.println(listFile.size);
+        return "";
     }
 }

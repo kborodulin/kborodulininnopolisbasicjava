@@ -10,7 +10,7 @@ import java.io.IOException;
  */
 public class App {
     public static void main(String[] args) {
-      /*  try {
+        try {
             System.out.println(FileOperation.newFile("C:\\temp", "тест.txt"));
         } catch (IOException e) {
             e.printStackTrace();
@@ -32,10 +32,10 @@ public class App {
             System.out.println(FileOperation.deleteFile("C:\\temp", "test5.txt"));
         } catch (IOException e) {
             e.printStackTrace();
-        } */
+        }
 
         try {
-            System.out.println(FileOperation.recursive("C:\\temp"));
+            RecursiveFile.recursive("C:\\temp\\1");
         } catch (IOException e) {
             e.printStackTrace();
         }

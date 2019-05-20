@@ -5,10 +5,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Работа с файлами
@@ -42,20 +38,5 @@ public class FileOperation {
         Path path = Paths.get(pathFileName);
         Files.delete(path);
         return "Файл удален: " + pathFileName;
-    }
-
-    public static String recursive(String pathDirectory) throws IOException {
-        File[] arrFiles = new File(pathDirectory).listFiles();
-        for (File file : arrFiles) {
-            if (file.isFile()) {
-                System.out.println( "   " + file.getAbsolutePath());
-               // System.out.println(file.getAbsolutePath());
-            }
-            if(file.isDirectory()){
-                recursive(file.getAbsolutePath());
-            }
-        }
-        //System.out.println(listFile.size);
-        return "";
     }
 }

@@ -22,7 +22,7 @@ public class App {
     public void toLeft() {
         for (int line = 0; line < array.length; line++) {
             // Перебор массива до предпоследнего элемента
-            for (int column = 0; column < array[line].length - 2; column++) {
+            for (int column = 0; column < array[line].length - 1; column++) {
                 array[line][column] = array[line][column + 1];
                 System.out.print(array[line][column] + " ");
             }

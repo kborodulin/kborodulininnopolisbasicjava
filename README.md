@@ -209,3 +209,22 @@ task22
 Написать класс PersonSuperComparator,
 который имплементит Comparator, но умеет сравнивать по двум параметрам , возраст и имя.
 Класс Person теперь содержит два поля int age и String name
+
+task23
+Реализовать класс корзины интернет магазина по следующему интерфейсу:
+
+interface Basket {
+
+    void addProduct(String product, int quantity);
+
+    void removeProduct(String product);
+
+    void updateProductQuantity(String product, int quantity);
+
+    void clear();
+
+    List<String> getProducts();
+
+    int getProductQuantity(String product);
+
+}

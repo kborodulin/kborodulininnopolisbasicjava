@@ -228,3 +228,9 @@ interface Basket {
     int getProductQuantity(String product);
 
 }
+
+task24
+ДЗ_24_Фильтрация множества элементов
+Написать метод, который возвращает множество, в котором удалены все элементы четной длины из исходного множества.
+public Set<String> removeEvenLength(Set<String> set);
+Например, для множества ["foo", "buzz", "bar", "fork", "bort", "spoon", "!", "dude"] метод вернет ["foo", "bar", "spoon", "!"]

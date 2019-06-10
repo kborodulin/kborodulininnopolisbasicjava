@@ -17,7 +17,7 @@ public class App {
         Collections.addAll(stringSet, "foo", "buzz", "bar", "fork", "bort", "spoon", "!", "dude");
 
         SetFiltering setFiltering = new SetFiltering();
-        Set<String> stringSet1 = setFiltering.removeEvenLength3(stringSet);
+        Set<String> stringSet1 = setFiltering.removeEvenLength4(stringSet);
 
         for (String line : stringSet1) {
             System.out.print(line + " ");

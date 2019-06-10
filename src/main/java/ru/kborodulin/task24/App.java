@@ -15,9 +15,11 @@ public class App {
     public static void main(String[] args) {
         Set<String> stringSet = new LinkedHashSet();
         Collections.addAll(stringSet, "foo", "buzz", "bar", "fork", "bort", "spoon", "!", "dude");
+
         SetFiltering setFiltering = new SetFiltering();
-        setFiltering.removeEvenLength(stringSet);
-        for (String line : stringSet) {
+        Set<String> stringSet1 = setFiltering.removeEvenLength3(stringSet);
+
+        for (String line : stringSet1) {
             System.out.print(line + " ");
         }
     }
